@@ -1,0 +1,152 @@
+:root{
+  --content-color: #ffffff;
+  --conetent-font-size: 20px;
+  --content-font-family: 'Roboto', sans-serif;
+  --background-color: #ededed;
+  }
+
+
+body {
+  background-color: var(--background-color);
+}
+
+.gallery {
+  position: relative;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.image-wrapper {
+  position: relative;
+  width: 20%;
+  margin: 13px;
+  }
+
+ .image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+}
+
+.image-wrapper:hover .image-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: visible;
+  opacity: 1;
+}
+
+.text-content-wrapper {
+  position: absolute;
+  top: 17%;
+  width: 92%;
+  left: 3%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.title {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--content-font-family);
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 2;
+  color: var(--content-color);
+}
+
+.title::-webkit-scrollbar {
+  display: none;
+}
+
+.author::-webkit-scrollbar {
+  display: none;
+}
+
+.author {
+  position: relative;
+  display: inline-block;
+  padding: 6px;
+  width: 75%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: auto;
+  font-family: var(--content-font-family);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--content-color);
+}
+
+
+.author::before {
+  position: absolute;
+  display: block;
+  top: -1%;
+  left: 50%;
+  width: 80%;
+  display: block;
+  transform: translateX(-50%);
+  content: "";
+  color: var(--content-color);
+  border-top: 2px solid rgb(251, 251, 251);
+}
+
+
+.favorite-button-wrapper {
+  position: absolute;
+  top: 68%;
+  width: 100%;
+  left: 0;
+  text-align: center;
+}
+
+.favorite-button {
+  width: 100px;
+  height: 38px;
+  font-size: 11px;
+  border-radius: 92px;
+  color: var(--content-color);
+  background-color: transparent;
+  border: 1px solid rgba(236, 230, 230, 0.5);
+}
+
+.favorite-button:focus {
+ outline: 0;
+}
+
+.favorite-button:hover {
+  cursor: pointer;
+  background-color: rgba(222, 206, 206, 0.28);
+}
+
+.favorite-icon-wrapper {
+  position: absolute;
+  top: 83%;
+  left: 85%;
+  z-index: 1;
+  display: block;
+}
+
+.heart {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}

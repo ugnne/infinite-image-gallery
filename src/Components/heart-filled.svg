@@ -1,0 +1,19 @@
+<svg width="20px" height="18px" viewBox="0 0 20 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44 (41411) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#3F58AF" offset="0%"></stop>
+            <stop stop-color="#2CA6B0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MAXICONS-2.0" transform="translate(-413.000000, -386.000000)" fill="url(#linearGradient-1)">
+            <g id="Like" transform="translate(365.000000, 316.000000)">
+                <g id="Inverse" transform="translate(16.000000, 0.000000)">
+                    <path d="M50.2842712,79.8445269 C52.5719096,77.5924552 52.5719096,73.9411255 50.2842712,71.6890538 C47.9966329,69.4369821 44.2876383,69.4369821 42,71.6890538 C39.7123617,69.4369821 36.0033671,69.4369821 33.7157288,71.6890538 C31.4280904,73.9411255 31.4280904,77.5924552 33.7157288,79.8445269 L42,88 L50.2842712,79.8445269 L50.2842712,79.8445269 Z" id="shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
