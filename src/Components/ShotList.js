@@ -12,6 +12,7 @@ const ShotList = props => {
       author={shot.user.name}
       key={shot.id}
       id={shot.id}
+      className="mobile-visible"
       />);
 
   return (

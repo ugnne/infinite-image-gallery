@@ -72,12 +72,12 @@ class Shot extends React.Component {
             className="favorite-button"
             handler={this.handleClick}
             value={this.state.favorited ? "Unfavourite" : "Favourite"}
-             />
+          />
         </div>
         <FavouriteIcon handler={this.handleClick}
           id={`"icon" + ${this.state.id}`}
-          iconSrc={this.state.favorited ? HeartFilled : HeartEmpty }
-          />
+          iconSrc={this.state.favorited ? HeartFilled : HeartEmpty}
+        />
       </div>
     );
   }
