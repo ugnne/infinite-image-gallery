@@ -1,5 +1,4 @@
 import config from './config'
-import ShotList from './ShotList';
 import axios from 'axios'
 
 const api = {
