@@ -44,9 +44,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.shots);
-    const url = api.getUrl(this.state.pageNumber);
-    console.log(url);
     return (
       <ShotList data={this.state.shots} className="gallery" />
     );

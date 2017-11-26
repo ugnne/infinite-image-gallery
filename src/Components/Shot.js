@@ -70,11 +70,11 @@ class Shot extends React.Component {
           </div>
           <FavouriteButton id={`"button " + ${this.state.id}`}
             className="favorite-button"
-            handler={this.handleClick}
+            clicksHandler={this.handleClick}
             value={this.state.favorited ? "Unfavourite" : "Favourite"}
           />
         </div>
-        <FavouriteIcon handler={this.handleClick}
+        <FavouriteIcon clicksHandler={this.handleClick}
           id={`"icon" + ${this.state.id}`}
           iconSrc={this.state.favorited ? HeartFilled : HeartEmpty}
         />
