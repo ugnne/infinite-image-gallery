@@ -10,32 +10,18 @@ const api = {
   },
 
   request: function (url) {
-    return new Promise(function (resolve, reject) {
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", url);
-      xhr.onload = function () {
-        if (this.status >= 200 && this.status < 300) {
-          resolve(xhr.response);
-        } else {
-          reject({
-            status: this.status,
-            statusText: xhr.statusText
-          });
-        }
-      };
+    let responseJSON = fetch(url).then(function (response) {
+      return response.json()
+    })
+      .catch(error => {
+        console.log('Error', error)
+      });
 
-      xhr.onerror = function () {
-        reject({
-          status: this.status,
-          statusText: xhr.statusText
-        });
-      };
-      xhr.send();
-    });
+    return responseJSON
   },
 
   getShots: function (pageNumber, successCallback) {
-    return this.request(this.getUrl(pageNumber)).then(response => JSON.parse(response))
+    return this.request(this.getUrl(pageNumber))
       .then(data => successCallback(data));
   }
 }
