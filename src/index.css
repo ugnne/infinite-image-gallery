@@ -230,7 +230,7 @@ body {
 @media (max-width: 480px) and (min-width: 376px)  {
   .image-wrapper {
     box-sizing: border-box;
-    width: 43%;
+    width: 41%;
     left: 0;
   }
 /*
@@ -329,7 +329,7 @@ body {
   .image-wrapper {
     box-sizing: border-box;
     left: 0;
-    width: 42%;
+    width: 41%;
   }
 
   .image {
