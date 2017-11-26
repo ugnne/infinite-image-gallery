@@ -9,7 +9,6 @@ class App extends React.Component {
     this.state = {
       shots: [],
       pageNumber: 0,
-      isLoading: false,
     }
     this.handleScroll = this.handleScroll.bind(this)
     this.addShots = this.addShots.bind(this)
