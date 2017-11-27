@@ -2,7 +2,11 @@
   --content-color: #ffffff;
   --conetent-font-size: 20px;
   --content-font-family: 'Roboto', sans-serif;
-  --background-color: #ededed;
+  --background-color: hsl(0, 0%, 93%);
+  --border-radius: 10px;
+  --decrease-with: 8%;
+  --content-wrapper-width: 100%;
+  --content-wrapper-backg: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
   }
 
 
@@ -21,7 +25,7 @@ body {
 .image {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -53,7 +57,7 @@ body {
 .text-content-wrapper {
   position: absolute;
   top: 17%;
-  width: 92%;
+  width: calc(var(--content-wrapper-width) - 8%);
   left: 3%;
   text-align: center;
   overflow: hidden;
@@ -243,7 +247,6 @@ body {
   }
 }
 
-
 @media (min-width: 481px) and (max-width: 768px) {
   .image-wrapper {
     width: 28%;
@@ -257,7 +260,7 @@ body {
   }
 
   .image-wrapper:active .image-overlay {
-    background-image: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
+    background-image: var(--content-wrapper-backg);
     opacity: 0.6;
   }
 
@@ -272,7 +275,7 @@ body {
     opacity: 1;
     background-image: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
     opacity: 0.9;
-    width: 100%;
+    width: var(--content-wrapper-width);
     height: 25%;
     left: 0%;
     text-align: center;
@@ -354,7 +357,7 @@ body {
   }
 
   .image-wrapper:active .image-overlay {
-    background-image: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
+    background-image: var(--content-wrapper-backg);
     opacity: 0.6;
   }
 
@@ -366,9 +369,9 @@ body {
     position: absolute;
     top: 75%;
     opacity: 1;
-    background-image: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
+    background-image: var(--content-wrapper-backg);
     opacity: 0.9;
-    width: 100%;
+    width: var(--content-wrapper-width);;
     height: 25%;
     left: 0%;
     text-align: center;
@@ -450,7 +453,7 @@ body {
   }
 
   .image-wrapper:active .image-overlay {
-    background-image: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
+    background-image: var(--content-wrapper-backg);
     opacity: 0.6;
   }
 
@@ -462,7 +465,7 @@ body {
   .text-content-wrapper {
     position: absolute;
     top: 75%;
-    background-image: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
+    background-image: var(--content-wrapper-backg);
     opacity: 0.9;
     width: 100%;
     height: 25%;
@@ -546,7 +549,7 @@ body {
   }
 
   .image-wrapper:active .image-overlay {
-    background-image: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
+    background-image: var(--content-wrapper-backg);
     opacity: 0.6;
   }
 
@@ -558,9 +561,9 @@ body {
   .text-content-wrapper {
     position: absolute;
     top: 76%;
-    background-image: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
+    background-image: var(--content-wrapper-backg);
     opacity: 0.9;
-    width: 100%;
+    width: var(--content-wrapper-width);
     height: 25%;
     left: 0%;
     text-align: left;
