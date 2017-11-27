@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import FavouriteButton from './FavouriteButton';
+import Button from './Button';
 import FavouriteIcon from './FavouriteIcon';
 import storage from './LocalStorage'
 import { Dummy, HeartEmpty, HeartFilled } from './images';
@@ -68,7 +68,7 @@ class Shot extends React.Component {
             <div className="title">{this.state.title}</div>
             <div className="author">{this.state.author}</div>
           </div>
-          <FavouriteButton id={`"button " + ${this.state.id}`}
+          <Button id={`"button " + ${this.state.id}`}
             className="favorite-button"
             clicksHandler={this.handleClick}
             value={this.state.favorited ? "Unfavourite" : "Favourite"}
