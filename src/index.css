@@ -202,7 +202,7 @@ body {
   }
 
   .favorite-button {
-    width: calc(var(--favorite-button-width) - 10%);
+    width: calc(var(--favorite-button-width) - 2%);
     height: calc(var(--favorite-button-height) - 1%);
     font-size: 11px;
   }
@@ -229,7 +229,7 @@ body {
 
   .favorite-button {
     width: calc(var(--favorite-button-width) - 4%);
-    height: calc(var(--favorite-button-height) + 5%);
+    height: calc(var(--favorite-button-height) + 1%);
     font-size: 9px;
   }
 
