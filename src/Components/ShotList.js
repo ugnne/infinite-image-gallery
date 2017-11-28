@@ -2,18 +2,15 @@ import React from 'react';
 import Shot from './Shot';
 
 const ShotList = props => {
-
-  const results = props.data;
-  let shots;
-
-    shots = results.map(shot => <Shot
+  let shots = props.data.map( shot =>
+    <Shot
       url={shot.images.normal}
       title={shot.title}
       author={shot.user.name}
       key={shot.id}
       id={shot.id}
-      className="mobile-visible"
-      />);
+      className="mobile-visible" />
+   );
 
   return (
     <div className="gallery">

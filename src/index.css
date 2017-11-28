@@ -14,7 +14,6 @@
   /* --text-content-wrapper-top: 20%; */
  }
 
-
 body {
   background-color: var(--background-color);
 }
@@ -145,15 +144,24 @@ body {
   display: block;
 }
 
-.heart {
+.heart-filled .heart-empty {
   position: absolute;
   width: 16px;
   height: 16px;
   cursor: pointer;
 }
 
-.heart:focus {
-  outline: 0;
+.heart-filled {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+ .heart-empty {
+  display: none;
+}
+
+.image-wrapper:hover .heart-empty {
+  display: block;
 }
 
 /*  -----------------------Media Queries --------------------------*/
@@ -186,11 +194,6 @@ body {
     position: absolute;
     top: 67%;
     text-align: center;
-  }
-
-  .heart {
-    width: 20px;
-    height: 20px;
   }
 }
 
@@ -285,7 +288,7 @@ body {
   .author {
     display: block;
     top: -11px;
-    margin: 0 0 1% 1%;
+    margin: 0 0 1% 2%;
     font-size: 9px;
     text-align: left;
   }

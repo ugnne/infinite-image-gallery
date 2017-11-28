@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import FavouriteButton from './FavouriteButton';
 import FavouriteIcon from './FavouriteIcon';
 import storage from './LocalStorage'
-import { Dummy, HeartEmpty, HeartFilled } from './images';
+import { Dummy, HeartEmpty, HeartFilled } from './images/images';
 
 class Shot extends React.Component {
   constructor(props) {
@@ -27,11 +27,7 @@ class Shot extends React.Component {
     this.toggleFavorites();
   }
 
-  toggleFavorites() {
-    this.state.favorited = !this.state.favorited
-    this.setState({
-      favorited: this.state.favorited
-    })
+  updateStorage() {
     if (this.state.favorited) {
       storage.add(this.state.id, this.state.favorited)
     } else {
@@ -39,23 +35,28 @@ class Shot extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.favorited !== this.state.favorited) this.updateStorage()
+  }
+
+  toggleFavorites() {
+    this.setState({ favorited: !this.state.favorited })
+  }
+
   lazyLoadImage() {
     let element = ReactDOM.findDOMNode(this.refs[this.state.id])
     let elementPosition = element.getBoundingClientRect().y
     let windowThreshold = window.innerHeight * 1.1
-    if (elementPosition < windowThreshold) {
-      this.setState({
-        src: this.state.url
-      })
-    }
+
+    if (elementPosition < windowThreshold) this.setState({ src: this.state.url })
   }
 
   componentDidMount() {
     this.lazyLoadImage()
+
     window.addEventListener('scroll', this.lazyLoadImage);
-    this.setState({
-      favorited: storage.getShots(this.state.id)
-    })
+
+    this.setState({ favorited: storage.getShots(this.state.id) })
   }
 
   render() {
@@ -77,6 +78,7 @@ class Shot extends React.Component {
         <FavouriteIcon clicksHandler={this.handleClick}
           id={`"icon" + ${this.state.id}`}
           iconSrc={this.state.favorited ? HeartFilled : HeartEmpty}
+          className={this.state.favorited ? "heart-filled" : "heart-empty"}
         />
       </div>
     );
