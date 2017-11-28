@@ -10,18 +10,19 @@ const api = {
       '&page=', pageNumber].join('')
   },
 
-  request: function(url) {
-    let responseJSON = axios.get(url)
-     .then(response => response.data)
-     .catch(error => {
-       console.log('Error', error);
-     });
-     return responseJSON
-   },
+  request: function (url) {
+    let responseJSON = fetch(url).then(function (response) {
+      return response.json()
+    })
+      .catch(error => {
+        console.log('Error', error)
+      });
 
-  getShots: function (pageNumber, successCallback) {
+    return responseJSON
+  },
+
+  getShots: function (pageNumber) {
     return this.request(this.getUrl(pageNumber))
-      .then(data => successCallback(data));
   }
 }
 

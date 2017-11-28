@@ -10,15 +10,23 @@ class App extends React.Component {
       shots: [],
       pageNumber: 0,
     }
+
     this.handleScroll = this.handleScroll.bind(this)
     this.addShots = this.addShots.bind(this)
   }
 
   componentDidMount() {
-    api.getShots(++this.state.pageNumber, this.onShotsReceived.bind(this));
+    api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
     this.addShots()
+
     window.addEventListener('scroll', this.handleScroll);
   }
+
+
+  // componentDidUpdate() {
+  //   this.addShots()
+  //   window.addEventListener('scroll', this.handleScroll);
+  // }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -26,20 +34,18 @@ class App extends React.Component {
 
   handleScroll(event) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      api.getShots(++this.state.pageNumber, this.onShotsReceived.bind(this))
+      api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
     }
   }
 
   addShots() {
-    if (window.innerHeight >= document.body.offsetHeight)
+    if (window.innerHeight >= document.body.offsetHeight) {
     api.getShots(++this.state.pageNumber, this.onShotsReceived.bind(this))
+    }
   }
 
   onShotsReceived(data) {
-    this.setState({
-      isLoading: false,
-      shots: this.state.shots.concat(data)
-    })
+    this.setState({ shots: this.state.shots.concat(data)})
   }
 
   render() {
