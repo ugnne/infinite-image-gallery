@@ -27,8 +27,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevState, prevProps) {
-    if (prevState.pageNumber < 2)
-    this.addShots()
+    if (prevState.pageNumber < 2) this.addShots()
   }
 
   handleScroll(event) {
