@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ShotList from './Components/ShotList';
 import api from './Components/Api';
+import debounce from './utilities'
 
 class App extends React.Component {
   constructor(props) {
@@ -17,35 +18,35 @@ class App extends React.Component {
 
   componentDidMount() {
     api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
-    this.addShots()
-
-    window.addEventListener('scroll', this.handleScroll);
+    console.log("component just mounted")
+    window.addEventListener('scroll', debounce(this.handleScroll, 300));
   }
-
-
-  // componentDidUpdate() {
-  //   this.addShots()
-  //   window.addEventListener('scroll', this.handleScroll);
-  // }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
+  componentDidUpdate(prevState, prevProps) {
+    if (prevState.pageNumber < 2)
+    this.addShots()
+  }
+
   handleScroll(event) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
       api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
+      console.log("component just updated")
     }
   }
 
   addShots() {
-    if (window.innerHeight >= document.body.offsetHeight) {
-    api.getShots(++this.state.pageNumber, this.onShotsReceived.bind(this))
+    if (window.innerHeight > document.body.offsetHeight) {
+      api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
+      console.log("shots added")
     }
   }
 
   onShotsReceived(data) {
-    this.setState({ shots: this.state.shots.concat(data)})
+    this.setState({ shots: this.state.shots.concat(data) })
   }
 
   render() {

@@ -4,6 +4,7 @@
   --content-font-family: 'Roboto', sans-serif;
   --background-color: hsl(0, 0%, 93%);
   --border-radius: 10px;
+  --border-radius-sm: 0px;
   --decrease-with: 8%;
   --content-wrapper-width: 100%;
   --content-wrapper-backg: linear-gradient(120deg, #4774bd 0%, #c2e9fb 100%);
@@ -11,6 +12,8 @@
   --text-overflow: ellipsis;
   --favorite-button-width: 50%;
   --favorite-button-height: 25%;
+  --image-height: 100%;
+  --content-wrapper-height-sm: 25%;
   /* --text-content-wrapper-top: 20%; */
  }
 
@@ -49,6 +52,7 @@ body {
   width: 100%;
   height: 100%;
   opacity: 0;
+  border-radius: var(--border-radius);
   transition: visibility 0s, opacity 0.3s linear;
 }
 
@@ -60,7 +64,7 @@ body {
 
 .text-content-wrapper {
   position: absolute;
-  top: 17%;
+  top: 17%; /* Sets the position of text on the image. */
   width: calc(var(--content-wrapper-width) - 8%);
   left: 3%;
   text-align: center;
@@ -83,7 +87,7 @@ body {
   position: relative;
   display: inline-block;
   padding: 6px;
-  width: 75%;
+  width: 75%; /*The width that "author" should take on the image */
   text-align: center;
   white-space: nowrap;
   overflow:  var(--overflow);
@@ -144,7 +148,14 @@ body {
   display: block;
 }
 
-.heart-filled .heart-empty {
+.heart-filled {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.heart-empty {
   position: absolute;
   width: 16px;
   height: 16px;
@@ -152,10 +163,9 @@ body {
 }
 
 .heart-filled {
-  width: 20px;
-  height: 20px;
   display: block;
 }
+
  .heart-empty {
   display: none;
 }
@@ -218,7 +228,12 @@ body {
     font-size: 15px;
   }
 
-  .heart {
+  .heart-filled {
+    width: 20px;
+    height: 20px;
+  }
+
+  .heart-empty {
     width: 20px;
     height: 20px;
   }
@@ -246,18 +261,24 @@ body {
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
+
+  .image {
+    border-radius: var(--border-radius-sm);
+  }
+
   .image-wrapper {
     width: 28%;
     margin: 9px;
   }
 
   .image-overlay {
-    visibility: visible;
+    visibility: hidden;
     opacity: 1;
     transition: visibility 0.1s, opacity 0.01s linear;
   }
 
   .image-wrapper:active .image-overlay {
+    visibility: visible;
     background-image: var(--content-wrapper-backg);
     opacity: 0.6;
   }
@@ -269,27 +290,30 @@ body {
 
   .text-content-wrapper {
     position: absolute;
-    top: 76%;
+    border-radius: var(--border-radius-sm);
+    top: calc(var(--image-height) - var(--content-wrapper-height-sm));
     opacity: 1;
     background-image: var(--content-wrapper-backg);
     opacity: 0.9;
     width: var(--content-wrapper-width);
-    height: 25%;
+    height: var(--content-wrapper-height-sm);
+    /* border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius); */
     left: 0%;
   }
 
   .title {
     display: block;
     text-align: left;
-    margin: 0 10% 1% 5%;
-    font-size: 9px;
+    margin: 1% 10% 1% 5%;
+    font-size: 12px;
   }
 
   .author {
     display: block;
     top: -11px;
     margin: 0 0 1% 2%;
-    font-size: 9px;
+    font-size: 11px;
     text-align: left;
   }
 
@@ -305,11 +329,14 @@ body {
     display: block;
   }
 
-  .heart {
-    position: absolute;
+  .heart-filled {
     width: 18px;
     height: 18px;
-    cursor: pointer;
+  }
+
+  .heart-empty {
+    width: 18px;
+    height: 18px;
   }
 
   .favorite-button {
@@ -327,17 +354,18 @@ body {
   .image {
     width: 100%;
     height: 100%;
-    border-radius: 0px;
+    border-radius: var(--border-radius-sm);
     box-shadow: none;
   }
 
   .image-overlay {
-    visibility: visible;
+    visibility: hidden;
     opacity: 1;
     transition: visibility 0s, opacity 0.01s linear;
   }
 
   .image-wrapper:active .image-overlay {
+    visibility: visible;
     background-image: var(--content-wrapper-backg);
     opacity: 0.6;
   }
@@ -348,12 +376,12 @@ body {
 
   .text-content-wrapper {
     position: absolute;
-    top: 75%;
+    top: calc(var(--image-height) - var(--content-wrapper-height-sm));
     opacity: 1;
     background-image: var(--content-wrapper-backg);
     width: var(--content-wrapper-width);
     opacity: 0.9;
-    height: 25%;
+    height: var(--content-wrapper-height-sm);
     left: 0%;
     text-align: center;
     overflow: var(--overflow);
@@ -367,6 +395,10 @@ body {
     margin: 0px 10px;
     font-size: 10px;
     line-height: 2;
+    overflow: var(--overflow);
+    text-overflow: var(--text-overflow);
+    white-space: nowrap;
+    word-wrap: break-word;
   }
 
   .author {
@@ -375,6 +407,10 @@ body {
     margin: 0 0 0 2%;
     font-size: 10px;
     text-align: left;
+    overflow: var(--overflow);
+    text-overflow: var(--text-overflow);
+    white-space: nowrap;
+    word-wrap: break-word;
   }
 
   .author::before {
@@ -389,15 +425,19 @@ body {
     display: block;
   }
 
-  .heart {
-    position: absolute;
+  .heart-filled  {
     width: 18px;
     height: 18px;
-    cursor: pointer;
+  }
+
+  .heart-empty {
+    display: block;
   }
 
   .favorite-button {
     display: none;
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -411,21 +451,21 @@ body {
   .image {
     width: 100%;
     height: 100%;
-    border-radius: 0px;
+    border-radius: var(--border-radius-sm);
     box-shadow: none;
   }
 
   .image-overlay {
-    visibility: visible;
+    visibility: hidden;
     opacity: 1;
     transition: visibility 0s, opacity 0.01s linear;
   }
 
   .image-wrapper:active .image-overlay {
+    visibility: visible;
     background-image: var(--content-wrapper-backg);
     opacity: 0.6;
   }
-
 
   .image-wrapper:hover .image-overlay {
     background-color: transparent;
@@ -433,11 +473,11 @@ body {
 
   .text-content-wrapper {
     position: absolute;
-    top: 75%;
+    top: calc(var(--image-height) - var(--content-wrapper-height-sm));
     background-image: var(--content-wrapper-backg);
     opacity: 0.9;
     width: var(--content-wrapper-width);
-    height: 25%;
+    height:var(--content-wrapper-height-sm);
     left: 0%;
     text-align: left;
     overflow: var(--overflow);;
@@ -446,18 +486,24 @@ body {
   .title {
     display: block;
     text-align: left;
-    margin: 0px 11px;
+    margin: 1% 3%;
     padding-bottom: 1px;
     font-size: 9px;
+    overflow: var(--overflow);
+    text-overflow: var(--text-overflow);
+    white-space: nowrap;
   }
 
   .author {
     top: -11px;
-    margin: 0 0 0 2%;
+    margin: 0 0 0 0;
     display: block;
     font-style: italic;
     font-size: 9px;
     text-align: left;
+    overflow: var(--overflow);
+    text-overflow: var(--text-overflow);
+    white-space: nowrap;
   }
 
   .author::before {
@@ -472,11 +518,15 @@ body {
     display: block;
   }
 
-  .heart {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
+  .heart-filled {
+    width: 14px;
+    height: 14px;
+  }
+
+  .heart-empty {
+    width: 14px;
+    height: 14px;
+    display: block;
   }
 
   .favorite-button {
@@ -495,15 +545,17 @@ body {
     width: 100%;
     height: 100%;
     box-shadow: none;
+    border-radius:  var(--border-radius-sm);
   }
 
   .image-overlay {
-    visibility: visible;
+    visibility: hidden;
     opacity: 1;
     transition: visibility 0.1s, opacity 0.01s linear;
   }
 
   .image-wrapper:active .image-overlay {
+    visibility: visible;
     background-image: var(--content-wrapper-backg);
     opacity: 0.6;
   }
@@ -515,11 +567,11 @@ body {
 
   .text-content-wrapper {
     position: absolute;
-    top: 76%;
+    top: calc(var(--image-height) - var(--content-wrapper-height-sm));
     width: var(--content-wrapper-width);
     background-image: var(--content-wrapper-backg);
     opacity: 0.9;
-    height: 25%;
+    height: var(--content-wrapper-height-sm);
     left: 0%;
     text-align: left;
   }
@@ -527,17 +579,23 @@ body {
   .title {
     display: block;
     text-align: left;
-    margin: 0px 11px;
+    margin: 1% 4% 0;
     padding-bottom: 1px;
     font-size: 13px;
+    overflow: var(--overflow);
+    text-overflow: var(--text-overflow);
+    white-space: nowrap;
   }
 
   .author {
     top: -11px;
-    margin: 0 0 0 2%;
+    margin:0 2% 2%;
     display: block;
     text-align: left;
     font-size: 13px;
+    overflow: var(--overflow);
+    text-overflow: var(--text-overflow);
+    white-space: nowrap;
   }
 
   .author::before {
@@ -552,14 +610,17 @@ body {
     z-index: 1;
   }
 
-  .heart {
-    position: absolute;
+  .heart-filled .heart-empty {
     width: 18px;
     height: 18px;
-    cursor: pointer;
+  }
+
+  .heart-empty {
+    display: block;
   }
 
   .favorite-button {
     display: none;
   }
 }
+

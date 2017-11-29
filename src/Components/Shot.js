@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import FavouriteButton from './FavouriteButton';
 import FavouriteIcon from './FavouriteIcon';
 import storage from './LocalStorage'
-import { Dummy, HeartEmpty, HeartFilled } from './images/images';
+import { Dummy, HeartEmpty, HeartFilled } from '../images';
 
 class Shot extends React.Component {
   constructor(props) {

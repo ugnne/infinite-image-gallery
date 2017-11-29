@@ -1,5 +1,5 @@
 import config from './config'
-import axios from 'axios'
+// import axios from 'axios'
 
 const api = {
   getUrl: function (pageNumber) {
