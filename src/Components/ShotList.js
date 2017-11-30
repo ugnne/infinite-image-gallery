@@ -9,6 +9,7 @@ const ShotList = props => {
       author={shot.user.name}
       key={shot.id}
       id={shot.id}
+      callback={this.count}
       className="mobile-visible" />
    );
 
