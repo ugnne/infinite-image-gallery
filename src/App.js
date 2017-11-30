@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ShotList from './Components/ShotList';
 import api from './Components/Api';
 import debounce from './utilities'
+import { Spinner } from './images';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class App extends React.Component {
     this.state = {
       shots: [],
       pageNumber: 0,
+      isLoading: true,
     }
 
     this.handleScroll = this.handleScroll.bind(this)
@@ -32,6 +34,7 @@ class App extends React.Component {
     this.addShots()
   }
 
+
   handleScroll(event) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
       api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
@@ -48,16 +51,29 @@ class App extends React.Component {
   }
 
   onShotsReceived(data) {
-    this.setState({ shots: this.state.shots.concat(data) })
+    this.setState({ shots: this.state.shots.concat(data),
+                    isLoading: false })
     console.trace('state update')
   }
 
   render() {
     console.log('page number: ', this.state.pageNumber)
     return (
-      <ShotList data={this.state.shots} className="gallery" />
+      <div>
+      {
+        (this.state.isLoading)
+        ? <img className="loading-indicator" src={ Spinner }></img>
+        : <ShotList data={this.state.shots} className="gallery" />
+      }
+      </div>
     );
   }
 }
 
 export default App;
+
+
+
+// setTimeout(() => {
+//   this.setState({isLoading: true})
+// },300)
