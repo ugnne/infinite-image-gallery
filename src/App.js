@@ -20,7 +20,7 @@ class App extends React.Component {
     api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
     console.log("component just mounted")
     window.addEventListener('scroll', debounce(this.handleScroll, 300));
-    // window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
@@ -28,7 +28,8 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevState, prevProps) {
-      this.addShots()
+    console.log('component did update')
+    this.addShots()
   }
 
   handleScroll(event) {
@@ -39,6 +40,7 @@ class App extends React.Component {
   }
 
   addShots() {
+    console.log(window.innerHeight, '>=', document.body.offsetHeight, ' -> ', window.innerHeight >= document.body.offsetHeight)
     if (window.innerHeight >= document.body.offsetHeight) {
       api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
       console.log("shots added")
@@ -46,12 +48,12 @@ class App extends React.Component {
   }
 
   onShotsReceived(data) {
-    console.trace('--------------------->')
     this.setState({ shots: this.state.shots.concat(data) })
+    console.trace('state update')
   }
 
   render() {
-    console.log(this.state.pageNumber)
+    console.log('page number: ', this.state.pageNumber)
     return (
       <ShotList data={this.state.shots} className="gallery" />
     );
