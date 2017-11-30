@@ -177,6 +177,12 @@ body {
   display: block;
 }
 
+.loading-indicator {
+  position: absolute;
+  top: 70%;
+  left: 40%;
+  font-size: 20px;
+}
 /*  -----------------------Media Queries --------------------------*/
 
 @media (min-width: 1440px)  {
