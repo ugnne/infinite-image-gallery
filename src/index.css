@@ -289,6 +289,8 @@ body {
   }
 
   .text-content-wrapper {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     border-radius: var(--border-radius-sm);
     top: calc(var(--image-height) - var(--content-wrapper-height-sm));
@@ -297,24 +299,36 @@ body {
     opacity: 0.9;
     width: var(--content-wrapper-width);
     height: var(--content-wrapper-height-sm);
-    /* border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius); */
     left: 0%;
+    justify-content: space-between;
   }
 
   .title {
-    display: block;
-    text-align: left;
-    margin: 1% 10% 1% 5%;
-    font-size: 12px;
+    position: absolute;
+    margin: 0% 0 0% 2%;
+    -ms-flex-line-pack: left;
+    font-size: 11px;
+    white-space: nowrap;
+    min-width: 0;
+    overflow: var(--overflow);
+    -o-text-overflow: var(--text-overflow);
+    text-overflow: var(--text-overflow);
+    padding-bottom: 10%;
+    max-width: 100%;
   }
 
   .author {
-    display: block;
-    top: -11px;
-    margin: 0 0 1% 2%;
+    position: absolute;
+    margin: 0% 0 0 0%;
     font-size: 11px;
-    text-align: left;
+    white-space: nowrap;
+    min-width: 0;
+    overflow: var(--overflow);
+    -o-text-overflow: var(--text-overflow);
+    text-overflow: var(--text-overflow);
+    min-width: 0;
+    width: max-content;
+    padding: 10% 0 0 3%;
   }
 
   .author::before {
@@ -375,42 +389,47 @@ body {
   }
 
   .text-content-wrapper {
+    display: flex;
+    flex-direction: column;
     position: absolute;
+    border-radius: var(--border-radius-sm);
     top: calc(var(--image-height) - var(--content-wrapper-height-sm));
     opacity: 1;
     background-image: var(--content-wrapper-backg);
-    width: var(--content-wrapper-width);
     opacity: 0.9;
+    width: var(--content-wrapper-width);
     height: var(--content-wrapper-height-sm);
     left: 0%;
-    text-align: center;
-    overflow: var(--overflow);
-    text-overflow: var(--text-overflow);
-    white-space: nowrap;
+    justify-content: space-between;
   }
 
   .title {
-    display: block;
-    text-align: left;
-    margin: 0px 10px;
-    font-size: 10px;
-    line-height: 2;
+    position: absolute;
+    margin: 0% 0 0% 2%;
+    -ms-flex-line-pack: left;
+    font-size: 11px;
+    white-space: nowrap;
+    min-width: 0;
     overflow: var(--overflow);
     text-overflow: var(--text-overflow);
-    white-space: nowrap;
-    word-wrap: break-word;
+    text-overflow: var(--text-overflow);
+    padding-bottom: 10%;
+    max-width: 100%;
   }
 
   .author {
-    display: block;
-    top: -11px;
-    margin: 0 0 0 2%;
-    font-size: 10px;
-    text-align: left;
-    overflow: var(--overflow);
-    text-overflow: var(--text-overflow);
+    position: absolute;
+    margin: 0% 0 0 0%;
+    font-size: 11px;
     white-space: nowrap;
-    word-wrap: break-word;
+    min-width: 0;
+    overflow: var(--overflow);
+    -o-text-overflow: var(--text-overflow);
+    text-overflow: var(--text-overflow);
+    min-width: 0;
+    width: max-content;
+    padding: 10% 0 0 3%;
+    max-width: 100%;
   }
 
   .author::before {
@@ -472,39 +491,50 @@ body {
   }
 
   .text-content-wrapper {
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
     position: absolute;
+    border-radius: var(--border-radius-sm);
     top: calc(var(--image-height) - var(--content-wrapper-height-sm));
+    opacity: 1;
     background-image: var(--content-wrapper-backg);
     opacity: 0.9;
     width: var(--content-wrapper-width);
-    height:var(--content-wrapper-height-sm);
+    height: var(--content-wrapper-height-sm);
     left: 0%;
-    text-align: left;
-    overflow: var(--overflow);;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
   }
 
   .title {
-    display: block;
-    text-align: left;
-    margin: 1% 3%;
-    padding-bottom: 1px;
+    position: absolute;
+    margin: 0 0 0 3%;
     font-size: 9px;
+    white-space: nowrap;
+    min-width: 0;
     overflow: var(--overflow);
     text-overflow: var(--text-overflow);
-    white-space: nowrap;
+    text-overflow: var(--text-overflow);
+    padding-bottom: 10%;
+    max-width: 100%;
   }
 
   .author {
-    top: -11px;
+    position: absolute;
     margin: 0 0 0 0;
-    display: block;
-    font-style: italic;
-    font-size: 9px;
-    text-align: left;
-    overflow: var(--overflow);
-    text-overflow: var(--text-overflow);
+    font-size: 11px;
     white-space: nowrap;
+    min-width: 0;
+    overflow: var(--overflow);
+    -o-text-overflow: var(--text-overflow);
+    text-overflow: var(--text-overflow);
+    min-width: 0;
+    width: max-content;
+    padding: 10% 0 0 3%;
+    max-width: 100%;
   }
+
 
   .author::before {
     display: none;
@@ -566,37 +596,48 @@ body {
   }
 
   .text-content-wrapper {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: calc(var(--image-height) - var(--content-wrapper-height-sm));
-    width: var(--content-wrapper-width);
+    border-radius: var(--border-radius-sm);
+    top: calc(var(--image-height) - calc(var(--content-wrapper-height-sm) - 5%));
+    opacity: 1;
     background-image: var(--content-wrapper-backg);
     opacity: 0.9;
-    height: var(--content-wrapper-height-sm);
+    width: var(--content-wrapper-width);
+    height: calc(var(--content-wrapper-height-sm) - 5%);
     left: 0%;
-    text-align: left;
+    justify-content: space-between;
   }
 
   .title {
-    display: block;
-    text-align: left;
-    margin: 1% 4% 0;
-    padding-bottom: 1px;
-    font-size: 13px;
+    position: absolute;
+    margin: 0% 0 0% 2%;
+    font-size: 11px;
+    white-space: nowrap;
+    min-width: 0;
     overflow: var(--overflow);
     text-overflow: var(--text-overflow);
-    white-space: nowrap;
+    text-overflow: var(--text-overflow);
+    padding-bottom: 0;
+    max-width: 100%;
   }
 
   .author {
-    top: -11px;
-    margin:0 2% 2%;
-    display: block;
-    text-align: left;
-    font-size: 13px;
-    overflow: var(--overflow);
-    text-overflow: var(--text-overflow);
+    position: absolute;
+    margin: 0% 0 0 0%;
+    font-size: 11px;
     white-space: nowrap;
+    min-width: 0;
+    overflow: var(--overflow);
+    -o-text-overflow: var(--text-overflow);
+    text-overflow: var(--text-overflow);
+    min-width: 0;
+    width: max-content;
+    padding: 8% 0 0 2%;
+    max-width: 100%;
   }
+
 
   .author::before {
     display: none;
