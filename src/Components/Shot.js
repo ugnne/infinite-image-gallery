@@ -15,7 +15,9 @@ class Shot extends React.Component {
       src: Dummy,
       url: this.props.url,
       title: this.props.title,
-      author: this.props.author
+      author: this.props.author,
+      isVisible: false,
+      imageStatus: 'is Loading',
     }
 
     this.lazyLoadImage = this.lazyLoadImage.bind(this)
@@ -36,6 +38,8 @@ class Shot extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+      // console.log(prevState)
+    // console.warn(this.state)
     if (prevState.favorited !== this.state.favorited) this.updateStorage()
   }
 
@@ -48,7 +52,12 @@ class Shot extends React.Component {
     let elementPosition = element.getBoundingClientRect().y
     let windowThreshold = window.innerHeight * 1.1
 
-    if (elementPosition < windowThreshold) this.setState({ src: this.state.url })
+    if (elementPosition < windowThreshold) {
+      this.setState({
+        src: this.state.url,
+        isVisible: true,
+      })
+    }
   }
 
   componentDidMount() {
@@ -59,12 +68,22 @@ class Shot extends React.Component {
     this.setState({ favorited: storage.getShots(this.state.id) })
   }
 
+  handleImageLoaded() {
+    this.setState({
+      imageStatus: this.props.imageStatus
+    })
+  }
+
   render() {
-    const { favorited } = this.state
+    console.log( ( this.state.imageStatus: props.imageStatus).length)
+    const { favorited, src, isVisible } = this.state
     return (
-      <div className="image-wrapper mobile-visible" ref={this.props.id} >
-        <img src={this.state.src} className="image" alt="" />
-        <div className="image-overlay">
+      <div className="image-wrapper" ref={this.props.id} >
+        <img src={this.state.src}
+          className="image" alt=""
+          onLoad={this.handleImageLoaded.bind(this)} />
+        {this.state.imageStatus}
+        <div className={isVisible ? "image-overlay" : "lazy-overlay"} >
           <div className="text-content-wrapper">
             <div className="title">{this.state.title}</div>
             <div className="author">{this.state.author}</div>
@@ -72,13 +91,13 @@ class Shot extends React.Component {
           <FavouriteButton id={`"button " + ${this.state.id}`}
             className="favorite-button"
             clicksHandler={this.handleClick}
-            value={this.state.favorited ? "Unfavourite" : "Favourite"}
+            value={favorited ? "Unfavourite" : "Favourite"}
           />
         </div>
         <FavouriteIcon clicksHandler={this.handleClick}
           id={`"icon" + ${this.state.id}`}
-          iconSrc={this.state.favorited ? HeartFilled : HeartEmpty}
-          className={this.state.favorited ? "heart-filled" : "heart-empty"}
+          iconSrc={favorited ? HeartFilled : HeartEmpty}
+          className={favorited && (isVisible) ? "heart-filled" : "heart-empty"}
         />
       </div>
     );
@@ -86,5 +105,3 @@ class Shot extends React.Component {
 }
 
 export default Shot;
-
-

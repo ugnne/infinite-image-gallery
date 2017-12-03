@@ -1,12 +1,10 @@
 import React from 'react';
 
 const FavouriteButton = (props) => {
-
-  const clickHandler = props.clicksHandler
   return (
     <div className="favorite-button-wrapper">
       <button
-        onClick={clickHandler}
+        onClick={props.clicksHandler}
         className="favorite-button" >
         {props.value}
       </button>
