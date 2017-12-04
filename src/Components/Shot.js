@@ -18,6 +18,7 @@ class Shot extends React.Component {
       author: this.props.author,
       isVisible: false,
       imageStatus: 'is Loading',
+      count: this.props.count,
     }
 
     this.lazyLoadImage = this.lazyLoadImage.bind(this)
@@ -38,8 +39,6 @@ class Shot extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-      // console.log(prevState)
-    // console.warn(this.state)
     if (prevState.favorited !== this.state.favorited) this.updateStorage()
   }
 
@@ -68,21 +67,16 @@ class Shot extends React.Component {
     this.setState({ favorited: storage.getShots(this.state.id) })
   }
 
-  handleImageLoaded() {
-    this.setState({
-      imageStatus: this.props.imageStatus
-    })
-  }
-
   render() {
-    console.log( ( this.state.imageStatus: props.imageStatus).length)
     const { favorited, src, isVisible } = this.state
     return (
       <div className="image-wrapper" ref={this.props.id} >
         <img src={this.state.src}
           className="image" alt=""
-          onLoad={this.handleImageLoaded.bind(this)} />
-        {this.state.imageStatus}
+          onLoad={this.props.handleImageLoaded} />
+        {this.props.imageStatus}
+        {this.props.loaded}
+
         <div className={isVisible ? "image-overlay" : "lazy-overlay"} >
           <div className="text-content-wrapper">
             <div className="title">{this.state.title}</div>
@@ -105,3 +99,4 @@ class Shot extends React.Component {
 }
 
 export default Shot;
+

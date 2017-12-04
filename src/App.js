@@ -10,19 +10,16 @@ class App extends React.Component {
 
     this.state = {
       shots: [],
-      pageNumber: 0,
       count: 0,
+      pageNumber: 0,
       isLoading: true,
+      loaded: false,
     }
 
     this.handleScroll = this.handleScroll.bind(this)
     // this.addShots = this.addShots.bind(this)
     this.onAllShotsLoaded = this.onAllShotsLoaded.bind(this)
   }
-
-  // componentWillMount() {
-  //   this.setState({ isLoading: true });
-  // }
 
   componentDidMount() {
     api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
@@ -36,7 +33,7 @@ class App extends React.Component {
 
   componentDidUpdate(prevState, prevProps) {
     console.log('component did update')
-    this.onAllShotsLoaded()
+    // this.onAllShotsLoaded()
   }
 
   handleScroll(event) {
@@ -44,33 +41,40 @@ class App extends React.Component {
       this.setState({isLoading:true})
       setTimeout(() => {
    api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this)); }, 300);
-      // api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
       console.log("component just updated")
       console.log('loading', document.readyState)
     }
   }
 
   onAllShotsLoaded() {
-    if (this.state.count === this.state.shots.length) {
-      api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
-      // this.setState({count: this.state.count++})
-    }
+     this.setState({count: this.state.count.concat(this.props.count)})
+
   }
 
   onShotsReceived(data) {
     this.setState({
       shots: this.state.shots.concat(data),
       isLoading: false,
+      count: 0
     })
   }
 
-  // console.trace('state update')
+  onAllShotsLoaded(){
+    return this.setState({
+      loaded: true,
+      count: this.state.loaded.length
+    })
+    if (this.state.count === this.state.shots.length) {
+      api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
+    }
+  }
+
   render() {
-    console.log("Current Shots Length", this.state.shots.length)
-    console.log('page number: ', this.state.pageNumber)
+    console.log(this.state.count)
     return (
       <div>
-        <ShotList data={this.state.shots} className="gallery" onShotsLoaded={this.onAllShotsLoaded} />
+        <ShotList data={this.state.shots} className="gallery" onAllShotsLoaded={this.onAllShotsLoaded} //allLoaded={(this.state.loaded).toString()}//
+        />
         {
           this.state.isLoading ? <img className="loading-indicator" src={Spinner}></img> : null
         }

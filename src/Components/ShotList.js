@@ -8,29 +8,23 @@ class NewShotList extends React.Component {
     this.state = {
       shots: [],
       pageNumber: 0,
-      isLoading: true,
-      count: props.count
-      }
-    this.handlLoadedShots = this.handleLoadedShots.bind(this)
-  }
-
-  handleLoadedShots() {
-    this.props.handleImageLoaded
+      loaded: false,
+    }
   }
 
   render() {
-    console.log( this.state.handleLoadedShots)
     return (
       <div className="gallery">
         {this.props.data.map(shot =>
           <Shot
-          url={shot.images.normal}
-          title={shot.title}
-          author={shot.user.name}
-          key={shot.id}
-          id={shot.id}
-          imageStatus='Loaded'
-          className="image-wrapper mobile-visible"
+            url={shot.images.normal}
+            title={shot.title}
+            author={shot.user.name}
+            key={shot.id}
+            id={shot.id}
+            handleImageLoaded={this.props.onAllShotsLoaded}
+            // imageStatus={this.props.allLoaded}
+            className="image-wrapper mobile-visible"
           />
         )}
       </div>
