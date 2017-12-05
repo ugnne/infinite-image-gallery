@@ -1,23 +1,36 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import Shot from './Shot';
 
-const ShotList = props => {
-  let shots = props.data.map( shot =>
-    <Shot
-      url={shot.images.normal}
-      title={shot.title}
-      author={shot.user.name}
-      key={shot.id}
-      id={shot.id}
-      callback={this.count}
-      className="mobile-visible" />
-   );
+class NewShotList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      shots: [],
+      pageNumber: 0,
+      loaded: false,
+    }
+  }
 
-  return (
-    <div className="gallery">
-      { shots }
-    </div>
-  );
+  render() {
+    return (
+      <div className="gallery">
+        {this.props.data.map(shot =>
+          <Shot
+            url={shot.images.normal}
+            title={shot.title}
+            author={shot.user.name}
+            key={shot.id}
+            id={shot.id}
+            handleImageLoaded={this.props.onAllShotsLoaded}
+            // imageStatus={this.props.allLoaded}
+            className="image-wrapper mobile-visible"
+          />
+        )}
+      </div>
+    );
+  }
 }
 
-export default ShotList;
+export default NewShotList
+

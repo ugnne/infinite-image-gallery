@@ -2,8 +2,8 @@ import config from './config'
 // import axios from 'axios'
 
 const api = {
-  getUrl: function (pageNumber) {
-    return [
+  getUrl: (pageNumber) => {
+     return [
       config.baseUrl,
       'access_token=', config.accessToken,
       '&sort=', config.sorting,
@@ -11,17 +11,11 @@ const api = {
   },
 
   request: function (url) {
-    let responseJSON = fetch(url).then(function (response) {
-      return response.json()
-    })
-      .catch(error => {
-        console.log('Error', error)
-      });
-
-    return responseJSON
+    return fetch(url).then((response) => response.json())
+      .catch(error => console.log('Error', error));
   },
 
-  getShots: function (pageNumber) {
+  getShots: function (pageNumber)  {
     return this.request(this.getUrl(pageNumber))
   }
 }
