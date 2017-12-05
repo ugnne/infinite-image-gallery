@@ -62,7 +62,6 @@ class App extends React.Component {
   onAllShotsLoaded(){
     return this.setState({
       loaded: true,
-      count: this.state.loaded.length
     })
     if (this.state.count === this.state.shots.length) {
       api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
