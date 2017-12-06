@@ -17,6 +17,7 @@ class Shot extends React.Component {
       title: this.props.title,
       author: this.props.author,
       isVisible: false,
+      // count: this.props.count,
     }
 
     this.lazyLoadImage = this.lazyLoadImage.bind(this)
@@ -72,8 +73,7 @@ class Shot extends React.Component {
         <img src={this.state.src}
           className="image" alt=""
           onLoad={this.props.handleImageLoaded} />
-        {this.props.allLoaded}
-
+        {this.props.imageStatus}
         <div className={isVisible ? "image-overlay" : "lazy-overlay"} >
           <div className="text-content-wrapper">
             <div className="title">{this.state.title}</div>

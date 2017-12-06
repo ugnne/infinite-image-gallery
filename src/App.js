@@ -13,12 +13,14 @@ class App extends React.Component {
       count: 0,
       pageNumber: 0,
       isLoading: true,
-      loaded: false,
+      imageStatus: 'Loading',
     }
 
     this.handleScroll = this.handleScroll.bind(this)
     // this.addShots = this.addShots.bind(this)
-    this.onAllShotsLoaded = this.onAllShotsLoaded.bind(this)
+    // this.onAllShotsLoaded = this.onAllShotsLoaded.bind(this)
+    this.handleImageLoaded = this.handleImageLoaded.bind(this)
+    this.whenAllLoaded = this.whenAllLoaded.bind(this)
   }
 
   componentDidMount() {
@@ -32,7 +34,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevState, prevProps) {
-    console.log('component did update')
+    // console.log('component did update')
     // this.onAllShotsLoaded()
   }
 
@@ -42,37 +44,43 @@ class App extends React.Component {
       setTimeout(() => {
    api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this)); }, 300);
       console.log("component just updated")
-      console.log('loading', document.readyState)
+      // console.log('loading', document.readyState)
     }
-  }
-
-  onAllShotsLoaded() {
-     this.setState({count: this.state.count.concat(this.props.count)})
-
   }
 
   onShotsReceived(data) {
     this.setState({
       shots: this.state.shots.concat(data),
       isLoading: false,
-      count: 0
     })
   }
 
-  onAllShotsLoaded(){
-    return this.setState({
-      loaded: true,
+  whenAllLoaded() {
+    this.onShotsReceived
+  }
+
+  handleImageLoaded(){
+     this.setState({
+      imageStatus: 'Loaded',
     })
-    if (this.state.count === this.state.shots.length) {
-      api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
-    }
+
+  // onAllShotsLoaded(){
+  //   this.setState({
+
+  //   })
+  // }
+    // if (this.state.count === this.state.shots.length) {
+    //   api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
+    // }
   }
 
   render() {
-    console.log(this.state.count)
     return (
       <div>
-        <ShotList data={this.state.shots} className="gallery" onAllShotsLoaded={this.onAllShotsLoaded} //allLoaded={(this.state.loaded).toString()}//
+        <ShotList data={this.state.shots}
+          className="gallery" handleImageLoaded={this.handleImageLoaded}
+          imageStatus={this.state.imageStatus}
+          //  whenAllLoaded = {this.whenAllLoaded}
         />
         {
           this.state.isLoading ? <img className="loading-indicator" src={Spinner}></img> : null
@@ -83,3 +91,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+// </ShotList>//allLoaded={(this.state.loaded).toString()}//
