@@ -20,7 +20,6 @@ class App extends React.Component {
     // this.addShots = this.addShots.bind(this)
     // this.onAllShotsLoaded = this.onAllShotsLoaded.bind(this)
     this.handleImageLoaded = this.handleImageLoaded.bind(this)
-    this.whenAllLoaded = this.whenAllLoaded.bind(this)
   }
 
   componentDidMount() {
@@ -40,9 +39,10 @@ class App extends React.Component {
 
   handleScroll(event) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
-      this.setState({isLoading:true})
+      this.setState({ isLoading: true })
       setTimeout(() => {
-   api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this)); }, 300);
+        api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
+      }, 300);
       console.log("component just updated")
       // console.log('loading', document.readyState)
     }
@@ -55,32 +55,34 @@ class App extends React.Component {
     })
   }
 
-  whenAllLoaded() {
-    this.onShotsReceived
-  }
-
-  handleImageLoaded(){
-     this.setState({
-      imageStatus: 'Loaded',
-    })
-
-  // onAllShotsLoaded(){
+  // handleImageLoaded() {
+  //   const galleryElement = this.refs.gallery;
   //   this.setState({
-
-  //   })
+  //     loading: !this.shotsLoaded(galleryElement),
+  //   });
   // }
-    // if (this.state.count === this.state.shots.length) {
-    //   api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this));
-    // }
-  }
+
+    handleImageLoaded(){
+      this.setState({
+       imageStatus: 'Loaded',
+     })
+   }
+
+  //  handleImageLoaded() {
+  //   const galleryElement = this.refs.gallery;
+  //   this.setState({
+  //     isLoading: this.shotsLoaded(galleryElement), // #QnA  -- shotsLoaded turetu grazinti true arba false priklausomai nuo to ar visi shotai yra loaded
+  //   });
+  // }
 
   render() {
     return (
       <div>
         <ShotList data={this.state.shots}
-          className="gallery" handleImageLoaded={this.handleImageLoaded}
+          className="gallery"
+          ref="gallery"
+          handleImageLoaded={this.handleImageLoaded}
           imageStatus={this.state.imageStatus}
-          //  whenAllLoaded = {this.whenAllLoaded}
         />
         {
           this.state.isLoading ? <img className="loading-indicator" src={Spinner}></img> : null
@@ -93,3 +95,17 @@ class App extends React.Component {
 export default App;
 
 // </ShotList>//allLoaded={(this.state.loaded).toString()}//
+
+
+//#QnA  1.perduodu per propsus funkciją į App.js. Noriu, kad ji pakeistų state'ą pagal tai ar visi shotai yra loaded ar ne
+//Jeigu bandau tikrinti - kiek shotu yra loaded, negaliu tikrinti pagal length, kadangi tai nera array'us.
+
+// 2. document.ready - document.onLoad
+//
+
+
+
+
+
+  //  HTMLImageElement.complete
+

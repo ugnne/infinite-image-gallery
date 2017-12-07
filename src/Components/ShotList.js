@@ -33,22 +33,22 @@ class ShotList extends React.Component {
   }
 }
 
+optionalArrayOf: PropTypes.arrayOf(PropTypes.number)
+
+
 ShotList.propTypes = {
   // propArray: React.PropTypes.array.isRequired
-  data: PropTypes.arrayOf(React.PropTypes.string),
-  optionalFunc: PropTypes.func,
-  optionalObject: PropTypes.object,
-  optionalString: PropTypes.string,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired      // #QnA Noriu perduoti array'u i App.js, kad galėčiau matyti, ar visi shotai yra užloadinti
 }
 
 export default ShotList
 
-// import React from 'react';
 
-// class Gallery extends React.Component {
-//  // implementation will go here
+
+// handleStateChange() {
+//   // In React 0.13 use: 'this.refs.gallery.getDOMNode()'
+//   const shotElement = this.refs.gallery;
+//   this.setState({
+//     loading: !imagesLoaded(galleryElement),
+//   });
 // }
-// Gallery.propTypes = {
-//  imageUrls: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-// };
-// export default Gallery;
