@@ -104,8 +104,9 @@ export default Shot;
 //  this.props.handleImageChange
 //  }
 //  viena tikrintu ar img yra matomas ir grazintu true arba false, kita pagal tai, ka grazina - pakeistu state’a
-//Bandžiau ieškoti visų
+
 
 // Bandžiau ieškoti visų img elementų su const shotElement  = querySelectorAll(‘img’), bet kai
-// prisikiriu  shotElement —> parentNode.querySelectorAll('img’);, meta “parentNode.querySelectorAll(‘img’)” is not a function. Taip pat bandeau su
-// document.querySelectorAll(‘img’)  (App.js komponente)
+// prisikiriu  shotElement —> parentNode.querySelectorAll('img’);, meta “parentNode.querySelectorAll(‘img’)” is not a function. Taip pat bandžiau su
+// document.querySelectorAll(‘img’)
+

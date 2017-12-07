@@ -43,12 +43,3 @@ ShotList.propTypes = {
 
 export default ShotList
 
-
-
-// handleStateChange() {
-//   // In React 0.13 use: 'this.refs.gallery.getDOMNode()'
-//   const shotElement = this.refs.gallery;
-//   this.setState({
-//     loading: !imagesLoaded(galleryElement),
-//   });
-// }
