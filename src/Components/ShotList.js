@@ -7,9 +7,20 @@ class ShotList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // pageNumber: 0,
-      // loaded: false,
-      // count: 0,
+      loaded: 0,
+    }
+    this.handleImageLoaded = this.handleImageLoaded.bind(this)
+  }
+
+  handleImageLoaded() {
+    this.setState({
+      loaded: ++this.state.loaded
+    })
+  }
+
+  componentDidUpdate(nextProps) {
+    if (this.props.data.length === this.state.loaded) {
+      this.props.handleImageLoaded(this.state.loaded)
     }
   }
 
@@ -18,12 +29,13 @@ class ShotList extends React.Component {
       <div className="gallery" >
         {this.props.data.map(shot =>
           <Shot
+            ref="shotElement"
             url={shot.images.normal}
             title={shot.title}
             author={shot.user.name}
             key={shot.id}
             id={shot.id}
-            handleImageLoaded={this.props.handleImageLoaded}
+            handleImageLoaded={this.handleImageLoaded}
             imageStatus={this.props.imageStatus}
             className="image-wrapper mobile-visible"
           />
@@ -31,14 +43,6 @@ class ShotList extends React.Component {
       </div>
     );
   }
-}
-
-optionalArrayOf: PropTypes.arrayOf(PropTypes.number)
-
-
-ShotList.propTypes = {
-  // propArray: React.PropTypes.array.isRequired
-  data: PropTypes.arrayOf(PropTypes.object).isRequired      // #QnA Noriu perduoti array'u i App.js, kad galėčiau matyti, ar visi shotai yra užloadinti
 }
 
 export default ShotList

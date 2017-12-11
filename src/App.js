@@ -14,6 +14,7 @@ class App extends React.Component {
       pageNumber: 0,
       isLoading: true,
       imageStatus: 'Loading',
+      imageCount: 0,
     }
 
     this.handleScroll = this.handleScroll.bind(this)
@@ -55,29 +56,16 @@ class App extends React.Component {
     })
   }
 
-  // handleImageLoaded() {
-  //   const galleryElement = this.refs.gallery;
-  //   this.setState({
-  //     loading: !this.shotsLoaded(galleryElement),
-  //   });
-  // }
-
-    handleImageLoaded(){
+    handleImageLoaded(count) {
       this.setState({
-       imageStatus: 'Loaded',
-     })
+        imageCount: count
+      })
    }
-
-  //  handleImageLoaded() {
-  //   const galleryElement = this.refs.gallery;
-  //   this.setState({
-  //     isLoading: this.shotsLoaded(galleryElement), // #QnA  -- shotsLoaded turetu grazinti true arba false priklausomai nuo to ar visi shotai yra loaded
-  //   });
-  // }
 
   render() {
     return (
       <div>
+        {this.state.imageCount}
         <ShotList data={this.state.shots}
           className="gallery"
           ref="gallery"
@@ -96,16 +84,4 @@ export default App;
 
 // </ShotList>//allLoaded={(this.state.loaded).toString()}//
 
-
-//#QnA  1.perduodu per propsus funkciją į App.js. Noriu, kad ji pakeistų state'ą pagal tai ar visi shotai yra loaded ar ne
-//Jeigu bandau tikrinti - kiek shotu yra loaded, negaliu tikrinti pagal length, kadangi tai nera array'us.
-
-// 2. document.ready - document.onLoad
-//
-
-
-
-
-
-  //  HTMLImageElement.complete
 
