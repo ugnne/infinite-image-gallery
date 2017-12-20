@@ -23,7 +23,6 @@ class NewShotList extends React.Component {
             key={shot.id}
             id={shot.id}
             handleImageLoaded={this.props.onAllShotsLoaded}
-            // imageStatus={this.props.allLoaded}
             className="image-wrapper mobile-visible"
           />
         )}
