@@ -40,7 +40,7 @@ class App extends React.Component {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
       this.setState({isLoading:true})
       setTimeout(() => {
-   api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this)); }, 300);
+      api.getShots(++this.state.pageNumber).then(this.onShotsReceived.bind(this)); }, 300);
       console.log("component just updated")
       console.log('loading', document.readyState)
     }

@@ -10,7 +10,7 @@ registerServiceWorker();
 
 WebFont.load({
   google: {
-    families: [ 'Roboto:100i,300,400,400i,700', 'sans-serif']
+    families: [ 'Open Sans', 'sans-serif;']
   }
 });
 
