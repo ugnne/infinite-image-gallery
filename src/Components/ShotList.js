@@ -35,6 +35,7 @@ class ShotList extends React.Component {
             author={shot.user.name}
             key={shot.id}
             id={shot.id}
+   
             handleImageLoaded={this.handleImageLoaded}
             imageStatus={this.props.imageStatus}
             className="image-wrapper mobile-visible"
