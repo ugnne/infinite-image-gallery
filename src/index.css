@@ -85,9 +85,6 @@ body {
   opacity: 1;
 }
 
-
-
-
 .text-content-wrapper {
   position: absolute;
   top: 17%; /* Sets the position of text on the image. */
@@ -693,8 +690,5 @@ body {
   .favorite-button {
     display: none;
   }
-  /* .loading-indicator {
-    display: none;
-  } */
 }
 
