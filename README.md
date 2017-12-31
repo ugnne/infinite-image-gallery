@@ -1,6 +1,6 @@
 ## infinite-image-gallery
 
-This in an infinite image gallery which uses Dribble API
+This is an infinite image gallery which uses Dribble API
 
 
 ## To run the app:
