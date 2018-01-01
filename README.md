@@ -14,4 +14,8 @@ yarn install
 ```
 cd src
 ```
-* In your browser, open: http://localhost:3000/
+* Run  the app in the development mode
+ ```
+yarn start 
+ ```
+* Open http://localhost:3000 to see the app in browser
