@@ -13,7 +13,7 @@ export const text = () => (
 export const emoji = () => (
   <Button onClick={action("clicked")}>
     <span role="img" aria-label="so cool">
-      😀 😎
+      😀
     </span>
   </Button>
 );
